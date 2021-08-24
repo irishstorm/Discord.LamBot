@@ -9,7 +9,6 @@ const prefix = "!";
 
 client.once("ready", () => {
   console.log("Bot is ready.");
-  DidYouTakeYourMedication();
 });
 
 client.on("message", async (message) => {
