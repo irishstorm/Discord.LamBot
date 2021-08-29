@@ -8,6 +8,14 @@ const client = new Client({
 const prefix = "!";
 
 client.once("ready", () => {
+  client.user.setStatus("available"); // Can be 'available', 'idle', 'dnd', or 'invisible'
+  client.user.setPresence({
+    game: {
+      name: "HI there!",
+      type: 0,
+      url: "www.irishstorm.net",
+    },
+  });
   console.log("Bot is ready.");
 });
 
@@ -20,44 +28,47 @@ client.on("message", async (message) => {
 
   switch (cmd) {
     case "meds":
-      DidYouTakeYourMedication();
+      const embed = new MessageEmbed()
+        .setTitle("Have you taken your meds today?")
+        .setImage(
+          "https://www.medco.ie/410-zoom_default/staff-nurse-bon-secours-hospital-cork.jpg"
+        )
+        .setAuthor("Lam Bot")
+        .setTimestamp()
+        .setFooter("Bot made with ❤ by irishstorm#2799");
+
+      message.channel.send(embed).then((message) => {
+        message.react("👍");
+        message.react("👎");
+      });
       break;
 
     case "feeling":
-      HowAreYouFeelingToday();
+      const embed1 = new MessageEmbed()
+        .setTitle("How are you doing today?")
+        .setAuthor("Lam Bot")
+        .addFields(
+          { name: "😎", value: "Excellent" },
+          { name: "😀", value: "Good" },
+          { name: "😐", value: "Neutral" },
+          { name: "😒", value: "Bad" },
+          { name: "😭", value: "Awful" }
+        )
+        .setTimestamp()
+        .setFooter("Bot made with ❤ by irishstorm#2799");
+
+      message.channel.send(embed1).then((message) => {
+        message.react("😎");
+        message.react("😀");
+        message.react("😐");
+        message.react("😒");
+        message.react("😭");
+      });
       break;
   }
 });
 
 client.login(process.env.TOKEN);
-
-function DidYouTakeYourMedication() {
-  console.log("Starting Cron job");
-  DisplayEmbed();
-  let job = new cron.CronJob("0 0 9 * * *", () => {
-    DisplayEmbed();
-  });
-  job.start();
-}
-
-function DisplayEmbed() {
-  const embed = new MessageEmbed()
-    .setTitle("Have you taken your meds today?")
-    .setImage(
-      "https://www.medco.ie/410-zoom_default/staff-nurse-bon-secours-hospital-cork.jpg"
-    )
-    .setAuthor("Lam Bot")
-    .setTimestamp()
-    .setFooter("Bot made with ❤ by irishstorm#2799");
-
-  client.channels.cache
-    .get(process.env.CHANNEL_ID)
-    .send(embed)
-    .then((message) => {
-      message.react("👍");
-      message.react("👎");
-    });
-}
 
 function HowAreYouFeelingToday() {
   const embed = new MessageEmbed()
@@ -73,14 +84,11 @@ function HowAreYouFeelingToday() {
     .setTimestamp()
     .setFooter("Bot made with ❤ by irishstorm#2799");
 
-  client.channels.cache
-    .get(process.env.CHANNEL_ID)
-    .send(embed)
-    .then((message) => {
-      message.react("😎");
-      message.react("😀");
-      message.react("😐");
-      message.react("😒");
-      message.react("😭");
-    });
+  message.channels.send(embed).then((message) => {
+    message.react("😎");
+    message.react("😀");
+    message.react("😐");
+    message.react("😒");
+    message.react("😭");
+  });
 }
