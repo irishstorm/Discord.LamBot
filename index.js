@@ -65,13 +65,6 @@ client.on("message", async (message) => {
         message.react("😭");
       });
       break;
-
-    case "bump":
-      client.channels.cache.get("753703734084632697").send("!d bump");
-      setInterval(function () {
-        client.channels.cache.get("753703734084632697").send("!d bump");
-      }, 7200);
-      break;
   }
 });
 
