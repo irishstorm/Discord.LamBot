@@ -65,30 +65,14 @@ client.on("message", async (message) => {
         message.react("😭");
       });
       break;
+
+    case "bump":
+      client.channels.cache.get("753703734084632697").send("!d bump");
+      setInterval(function () {
+        client.channels.cache.get("753703734084632697").send("!d bump");
+      }, 7200);
+      break;
   }
 });
 
 client.login(process.env.TOKEN);
-
-function HowAreYouFeelingToday() {
-  const embed = new MessageEmbed()
-    .setTitle("How are you doing today?")
-    .setAuthor("Lam Bot")
-    .addFields(
-      { name: "😎", value: "Excellent" },
-      { name: "😀", value: "Good" },
-      { name: "😐", value: "Neutral" },
-      { name: "😒", value: "Bad" },
-      { name: "😭", value: "Awful" }
-    )
-    .setTimestamp()
-    .setFooter("Bot made with ❤ by irishstorm#2799");
-
-  message.channels.send(embed).then((message) => {
-    message.react("😎");
-    message.react("😀");
-    message.react("😐");
-    message.react("😒");
-    message.react("😭");
-  });
-}
