@@ -81,6 +81,9 @@ const HowAreYouFeeling = (message) => {
     .setTimestamp()
     .setFooter("Bot made with ❤ by irishstorm#2799");
 
+  let roleId = "878320380375334983";
+  message.channel.send(`<@&${roleId}> Daily Checkin`);
+
   message.channel.send(embed1).then((message) => {
     message.react("😎");
     message.react("😀");
