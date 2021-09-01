@@ -51,7 +51,7 @@ client.on("message", async (message) => {
   }
 });
 
-HaveYouTakenYourMeds = () => {
+const HaveYouTakenYourMeds = (message) => {
   const embed = new MessageEmbed()
     .setTitle("Have you taken your meds today?")
     .setImage(
@@ -67,7 +67,7 @@ HaveYouTakenYourMeds = () => {
   });
 };
 
-HowAreYouFeeling = (message) => {
+const HowAreYouFeeling = (message) => {
   const embed1 = new MessageEmbed()
     .setTitle("How are you doing today?")
     .setAuthor("Lam Bot")
@@ -90,7 +90,7 @@ HowAreYouFeeling = (message) => {
   });
 };
 
-CheckIn = (message) => {
+const CheckIn = (message) => {
   const embed2 = new MessageEmbed()
     .setTitle("Weekly Checkin")
     .setAuthor("Lam Bot")
@@ -133,10 +133,12 @@ CheckIn = (message) => {
     .setTimestamp()
     .setFooter("Bot made with ❤ by irishstorm#2799");
 
+  let roleId = "";
+  message.channel.send(`<@&${roleId}> Weekly Checkin`);
   message.channel.send(embed2);
 };
 
-Help = (message) => {
+const Help = (message) => {
   const embed3 = new MessageEmbed()
     .setTitle("Helpful Commands")
     .setAuthor("Lam Bot")
