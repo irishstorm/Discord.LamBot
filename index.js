@@ -133,7 +133,7 @@ const CheckIn = (message) => {
     .setTimestamp()
     .setFooter("Bot made with ❤ by irishstorm#2799");
 
-  let roleId = "";
+  let roleId = "878320444271366144";
   message.channel.send(`<@&${roleId}> Weekly Checkin`);
   message.channel.send(embed2);
 };
