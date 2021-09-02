@@ -51,6 +51,10 @@ client.on("message", async (message) => {
       Help(message);
       break;
 
+    case "gay":
+      message.channel.send("Ha, thats gay!");
+      break;
+
     default:
       message.channel.send(
         "Please enter a vaild command, Type !help for help."
