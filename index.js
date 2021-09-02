@@ -10,10 +10,10 @@ const prefix = "!";
 client.once("ready", () => {
   client.user.setStatus("available"); // Can be 'available', 'idle', 'dnd', or 'invisible'
   client.user.setPresence({
-    game: {
-      name: "HI there!",
-      type: 0,
-      url: "www.irishstorm.net",
+    status: "online",
+    activity: {
+      name: "!help",
+      type: "PLAYING",
     },
   });
   console.log("Bot is ready.");
@@ -175,8 +175,6 @@ const PainScale = (message) => {
     )
     .setTimestamp()
     .setFooter("Bot made with ❤ by irishstorm#2799");
-
-  const flyEmoji = client.emojis.cache.get("714097004367839282");
 
   message.channel.send(embed).then((message) => {
     message.react("0️⃣");
