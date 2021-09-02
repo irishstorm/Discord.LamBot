@@ -176,7 +176,21 @@ const PainScale = (message) => {
     .setTimestamp()
     .setFooter("Bot made with ❤ by irishstorm#2799");
 
-  message.channel.send(embed);
+  const flyEmoji = client.emojis.cache.get("714097004367839282");
+
+  message.channel.send(embed).then((message) => {
+    message.react("0️⃣");
+    message.react("1️⃣");
+    message.react("2️⃣");
+    message.react("3️⃣");
+    message.react("4️⃣");
+    message.react("5️⃣");
+    message.react("6️⃣");
+    message.react("7️⃣");
+    message.react("8️⃣");
+    message.react("9️⃣");
+    message.react("🔟");
+  });
 };
 
 const MentalHealth = (message) => {
@@ -189,7 +203,19 @@ const MentalHealth = (message) => {
     .setTimestamp()
     .setFooter("Bot made with ❤ by irishstorm#2799");
 
-  message.channel.send(embed);
+  message.channel.send(embed).then((message) => {
+    message.react("0️⃣");
+    message.react("1️⃣");
+    message.react("2️⃣");
+    message.react("3️⃣");
+    message.react("4️⃣");
+    message.react("5️⃣");
+    message.react("6️⃣");
+    message.react("7️⃣");
+    message.react("8️⃣");
+    message.react("9️⃣");
+    message.react("🔟");
+  });
 };
 
 client.login(process.env.TOKEN);
