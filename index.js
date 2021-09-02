@@ -39,6 +39,14 @@ client.on("message", async (message) => {
       CheckIn(message);
       break;
 
+    case "pain":
+      PainScale(message);
+      break;
+
+    case "mental":
+      MentalHealth(message);
+      break;
+
     case "help":
       Help(message);
       break;
@@ -148,12 +156,40 @@ const Help = (message) => {
     .addFields(
       { name: "!feeling", value: "How are you feeling today" },
       { name: "!meds", value: "Did you take your meds today" },
-      { name: "!checkin", value: "How is your week going" }
+      { name: "!checkin", value: "How is your week going" },
+      { name: "!mental", value: "A mental health pain scale" },
+      { name: "!pain", value: "A pain scale" }
     )
     .setTimestamp()
     .setFooter("Bot made with ❤ by irishstorm#2799");
 
   message.channel.send(embed3);
+};
+
+const PainScale = (message) => {
+  const embed = new MessageEmbed()
+    .setTitle("Pain Chart")
+    .setAuthor("Lam Bot")
+    .setImage(
+      "https://media.discordapp.net/attachments/758609398620487682/883005128284725298/4ccb76173ab9007b63277e0a49426a4b.jpg?width=318&height=424"
+    )
+    .setTimestamp()
+    .setFooter("Bot made with ❤ by irishstorm#2799");
+
+  message.channel.send(embed);
+};
+
+const MentalHealth = (message) => {
+  const embed = new MessageEmbed()
+    .setTitle("Mental Health Chart")
+    .setAuthor("Lam Bot")
+    .setImage(
+      "https://media.discordapp.net/attachments/758609398620487682/883008820434055188/be94fc891412d77e4d893f14d5f49033.jpg?width=390&height=682"
+    )
+    .setTimestamp()
+    .setFooter("Bot made with ❤ by irishstorm#2799");
+
+  message.channel.send(embed);
 };
 
 client.login(process.env.TOKEN);
