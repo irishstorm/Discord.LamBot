@@ -226,6 +226,10 @@ const test = (message) => {
   const embed = new MessageEmbed()
     .setTitle("Would you Rather")
     .setDescription(wordList[getRandomInt(wordList.length)])
+    .addFields(
+      { name: "No", value: "❤", inline: true },
+      { name: "Yes", value: "💚", inline: true }
+    )
     .setTimestamp()
     .setFooter("Bot made with ❤ by irishstorm#2799");
 
