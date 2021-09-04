@@ -1,4 +1,6 @@
 require("dotenv").config();
+const Cheerio = require("cheerio");
+const fetch = require("node-fetch");
 const cron = require("cron");
 
 const { Client, Intents, MessageEmbed } = require("discord.js");
@@ -17,6 +19,7 @@ client.once("ready", () => {
     },
   });
   console.log("Bot is ready.");
+  WYR();
 });
 
 client.on("message", async (message) => {
@@ -51,14 +54,11 @@ client.on("message", async (message) => {
       Help(message);
       break;
 
-    case "gay":
-      message.channel.send("Ha, thats gay!");
+    case "wyrr":
+      test(message);
       break;
 
     default:
-      message.channel.send(
-        "Please enter a vaild command, Type !help for help."
-      );
       break;
   }
 });
@@ -218,6 +218,38 @@ const MentalHealth = (message) => {
     message.react("9️⃣");
     message.react("🔟");
   });
+};
+
+let wordList = [];
+
+const test = (message) => {
+  const embed = new MessageEmbed()
+    .setTitle("Would you Rather")
+    .setDescription(wordList[getRandomInt(wordList.length)])
+    .setTimestamp()
+    .setFooter("Bot made with ❤ by irishstorm#2799");
+
+  message.channel.send(embed).then((message) => {
+    message.react("❤");
+    message.react("💚");
+  });
+};
+
+const WYR = async () => {
+  const url = "https://woulduratherquestions.com/would-you-rather-questions/";
+
+  const res = await fetch(url);
+  const body = await res.text();
+  const $ = Cheerio.load(body);
+  const item = $("ol")
+    .children()
+    .map(function (iteration, element) {
+      wordList[iteration] = $(this).text();
+    });
+};
+
+const getRandomInt = (max) => {
+  return Math.floor(Math.random() * max);
 };
 
 client.login(process.env.TOKEN);
