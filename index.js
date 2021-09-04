@@ -54,10 +54,6 @@ client.on("message", async (message) => {
       Help(message);
       break;
 
-    case "wyrr":
-      test(message);
-      break;
-
     default:
       break;
   }
@@ -218,42 +214,6 @@ const MentalHealth = (message) => {
     message.react("9️⃣");
     message.react("🔟");
   });
-};
-
-let wordList = [];
-
-const test = (message) => {
-  const embed = new MessageEmbed()
-    .setTitle("Would you Rather")
-    .setDescription(wordList[getRandomInt(wordList.length)])
-    .addFields(
-      { name: "No", value: "❤", inline: true },
-      { name: "Yes", value: "💚", inline: true }
-    )
-    .setTimestamp()
-    .setFooter("Bot made with ❤ by irishstorm#2799");
-
-  message.channel.send(embed).then((message) => {
-    message.react("❤");
-    message.react("💚");
-  });
-};
-
-const WYR = async () => {
-  const url = "https://woulduratherquestions.com/would-you-rather-questions/";
-
-  const res = await fetch(url);
-  const body = await res.text();
-  const $ = Cheerio.load(body);
-  const item = $("ol")
-    .children()
-    .map(function (iteration, element) {
-      wordList[iteration] = $(this).text();
-    });
-};
-
-const getRandomInt = (max) => {
-  return Math.floor(Math.random() * max);
 };
 
 client.login(process.env.TOKEN);
